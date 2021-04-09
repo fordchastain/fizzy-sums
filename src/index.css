@@ -5,9 +5,49 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #41E296 0%, #00C4EE 65%);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.header {
+  width: 80%;
+  height: 220px;
+  margin: 0 auto;
+  background-color: #F3F3EF;
+  margin-top: 15px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  max-width: 1200px;
+}
+
+#github {
+  float: right;
+  margin-right: 20px;
+  margin-top: -40px;
+  width: 52px;
+  height: 52px;
+  z-index: 1;
+}
+
+.header a :hover {
+  opacity: 0.7;
+}
+
+.header img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: center;
+  width: 200px;
+  z-index: 2;
+}
+
+@media only screen and (max-width: 767px) {
+  .header {
+    width: 92%;
+  }
 }

@@ -1,5 +1,39 @@
-.component-sum-puzzle {
-  
+.app-content {
+  width: 80%;
+  margin: 0 auto;
+  background-color: #F3F3EF;
+  margin-bottom: 20px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  max-width: 1200px;
+  padding-top: 20px;
 }
 
+.divider-line {
+  width: 92%;
+  margin: 0 auto;
+  height: 2px;
+  background: #C8C8C8;
+  display: none;
+}
+
+.component-sum-puzzle {
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 20px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(6, 16.66%);
+  background: black;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+@media only screen and (max-width: 767px) {
+  .app-content {
+    width: 92%;
+  }
+}
 
