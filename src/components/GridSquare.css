@@ -1,29 +1,44 @@
 .component-grid-square {
-	position: relative;
-	border: 1px solid black;
-  	box-sizing: border-box;
+  position: relative;
+  border: 1px solid black;
+    box-sizing: border-box;
 }
 
 .component-grid-square.white {
-	background: white;
-	color: black;
+  background: white;
+  color: black;
 }
 
 .component-grid-square.black {
-	background: black;
-	color: white;
+  background: black;
+  color: white;
 }
 
 .component-grid-square::before {
-	content: "";
-	display: block;
-	padding-top: 100%;
+  content: "";
+  display: block;
+  padding-top: 100%;
 }
 
 .component-grid-square .content {
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.text-container {
+  width: 80%;
+  height: 80%;
+  padding-top: 10%;
+  padding-left: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  font-size: 25px;
+  flex-wrap: wrap; 
 }

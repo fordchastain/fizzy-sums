@@ -39,4 +39,10 @@ export default function generatePuzzle(size) {
     rowSums: rowSums,
     colSums: colSums
   });
+
+  return ({
+    arr: evalArr,
+    rowSums: rowSums,
+    colSums: colSums
+  });
 }

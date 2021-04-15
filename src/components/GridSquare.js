@@ -26,7 +26,9 @@ export default class GridSquare extends React.Component {
     return (
       <div className={className.join(" ").trim()}>
         <div className="content">
-
+          <div className="text-container">
+            <div className="text">{this.props.text}</div>
+          </div>
         </div>
       </div>
     );

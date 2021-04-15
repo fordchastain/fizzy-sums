@@ -1,4 +1,4 @@
-/*
+/**
  * Calculates the sum of a row in the puzzle array
  */
 export function calculateRow(arr, i) {
@@ -8,7 +8,7 @@ export function calculateRow(arr, i) {
   return eval(arr[i].join(" ").trim());
 }
 
-/*
+/**
  *  Get a column from the puzzle array
  */
 export function getCol(arr, i) {
@@ -18,7 +18,7 @@ export function getCol(arr, i) {
   return arr.map(x => x[i]);
 }
 
-/*
+/**
  *  Calculates the sum of a column in the puzzle array
  */
 export function calculateCol(arr, i) {
@@ -28,7 +28,7 @@ export function calculateCol(arr, i) {
   return eval(getCol(arr, i).join(" ").trim());
 }
 
-/*
+/**
  *  Calculates all row sums and populates an array with the results
  */
 export function calculateRowSums(arr, size) {
@@ -51,7 +51,7 @@ export function calculateRowSums(arr, size) {
   return rowSums;
 }
 
-/*
+/**
  *  Calculates all column sums and populates an array with the results
  */
 export function calculateColSums(arr, size) {

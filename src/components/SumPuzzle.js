@@ -7,14 +7,27 @@ import generatePuzzle from "../logic/generatePuzzle"
 export default class SumPuzzle extends React.Component {
   constructor(props) {
     super(props);
-    generatePuzzle(3);
+    this.size = 3;
+    this.puzzle = generatePuzzle(3);
   }
 
   renderSquare(row, col) {
+    let end = (typeof this.size === "undefined" ? 5 : this.size*2-1);
+    let text = "";
+    if (typeof this.puzzle.arr !== "undefined") {
+      if (col < end && row < end)
+        text = this.puzzle.arr[row][col];
+      if (col === end && row%2 === 0) 
+        text = "=" + this.puzzle.rowSums[Math.floor(row/2)];
+      if (row === end && col%2 === 0)
+        text = "=" + this.puzzle.colSums[Math.floor(col/2)];
+    }
+
     return(<GridSquare 
       row={row} 
       col={col} 
-      white={row!==5 && col!==5 && (row%2 === 0 || col%2 === 0)}
+      white={row!==end && col!==end && (row%2 === 0 || col%2 === 0)}
+      text={text}
     />);
   }
 
