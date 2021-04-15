@@ -1,3 +1,5 @@
+import * as calc from './calculate.js'
+
 /**
  *
  * Given the size of a sum, generate and return a new puzzle.
@@ -15,10 +17,6 @@ export default function generatePuzzle(size) {
   }
 
   let symbols = ['+', '-', '*', '/'];
-  let operations = [];
-  for (let i = 0; i < (size-1)*size*2; i++)
-    operations.push(symbols[Math.floor(Math.random() * 4)]);
-
   let evalArr = [];
   for (let i = 0; i < (size*2)-1; i++) {
     let innerArr = [];
@@ -26,22 +24,16 @@ export default function generatePuzzle(size) {
       if (j%2===0 && i%2===0) 
         innerArr.push(numbers.shift());
       else if ((j%2===0 && i%2!==0) || (j%2!==0 && i%2===0))
-        innerArr.push(operations.shift());
+        innerArr.push(symbols[Math.floor(Math.random() * 3)]);
       else
         innerArr.push("");
     }
     evalArr.push(innerArr);
   }
   
-  let rowSums = [];
-  for (let i = 0; i < (size*2)-1; i++)
-    if (i%2===0) rowSums.push(eval(evalArr[i].join(" ").trim()));
-
-  let colSums = [];
-  const getCol = (arr, n) => arr.map(x => x[n]);
-  for (let i = 0; i < (size*2)-1; i++)
-    if (i%2===0) colSums.push(eval(getCol(evalArr, i).join(" ").trim()));
-
+  let rowSums = calc.calculateRowSums(evalArr, size);
+  let colSums = calc.calculateColSums(evalArr, size);
+  
   console.log({
     arr: evalArr,
     rowSums: rowSums,
