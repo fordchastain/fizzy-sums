@@ -31,6 +31,19 @@
   border-radius: 8px;
 }
 
+.button-bar {
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.button-container {
+  width: 70%;
+  margin: 0 auto;
+}
+
 @media only screen and (max-width: 767px) {
   .app-content {
     width: 92%;

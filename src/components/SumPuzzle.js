@@ -1,6 +1,7 @@
 import React from "react"
 import logo from '../logo.svg';
 import './SumPuzzle.css';
+import Button from "./Button";
 import GridSquare from "./GridSquare";
 import generatePuzzle from "../logic/generatePuzzle";
 import { calculateRow, calculateCol } from "../logic/calculate";
@@ -50,6 +51,13 @@ export default class SumPuzzle extends React.Component {
       if (this.isPuzzleComplete() && this.isPuzzleCorrect())
         console.log("puzzle is correct!");
     }); 
+  }
+
+  newGame = () => {
+    this.setState({grid: []});
+    this.size = 3;
+    this.puzzle = generatePuzzle(3);
+    this.initializeGrid();
   }
 
   isRowComplete = (row) => {
@@ -138,6 +146,14 @@ export default class SumPuzzle extends React.Component {
     return (
       <div className="app-content">
         <div className="divider-line" />
+        <div className="button-bar">
+          <div className="button-container">
+            <Button text={"New Game"} handleClick={this.newGame} green={true}/>
+          </div>
+          <div className="button-container">
+            <a href="about.html"><Button text={"How to Play"} handleClick={this.newGame} green={false} /></a>
+          </div>
+        </div>
         <div className="component-sum-puzzle">
           <div className="grid-container">
             {grid}
