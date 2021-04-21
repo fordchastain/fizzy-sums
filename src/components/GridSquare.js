@@ -10,18 +10,23 @@ export default class GridSquare extends React.Component {
   static propTypes = {
     row: PropTypes.number,
     col: PropTypes.number,
-    handleClick: PropTypes.func,
+    handleInput: PropTypes.func,
     white: PropTypes.bool,
     operation: PropTypes.bool,
     readOnly: PropTypes.bool,
     value: PropTypes.string,
-    puzzleSize: PropTypes.number
+    puzzleSize: PropTypes.number,
+    greenText: PropTypes.bool,
+    redText: PropTypes.bool
   };
 
   handleClick = () => {
-    //this.props.handleClick();
     if (typeof this.input !== "undefined") 
       this.input.focus();
+  }
+
+  handleInput = (event) => {
+    this.props.handleInput(this.props.row, this.props.col, event.target.value);
   }
 
   renderContent() {
@@ -48,6 +53,7 @@ export default class GridSquare extends React.Component {
           maxLength={this.props.puzzleSize===4 ? 2 : 1} 
           ref={(inp) => this.input = inp}
           className={this.props.puzzleSize===3 ? "single-digit" : "double-digit"}
+          onChange={this.handleInput}
         />
       );
     }
@@ -57,13 +63,15 @@ export default class GridSquare extends React.Component {
     const className = [
       "component-grid-square",
       this.props.white ? "white" : "black",
-      this.props.readOnly ? "" : "input"
+      this.props.readOnly ? "" : "input",
+      this.props.greenText ? "green-text" : "",
+      this.props.redText ? "red-text" : ""
     ];
 
     let content = this.renderContent();
 
     return (
-      <div className={className.join(" ").trim()} onClick={this.handleClick}>
+      <div className={className.join(" ").trim()} onClick={this.props.handleClick}>
         <div className="content">
           <div className="text-container">
             {content}

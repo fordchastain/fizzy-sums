@@ -70,3 +70,11 @@ input {
 .operation img {
   width: 100%;
 }
+
+.green-text {
+  color: green;
+}
+
+.red-text {
+  color: red;
+}

@@ -3,12 +3,95 @@ import logo from '../logo.svg';
 import './SumPuzzle.css';
 import GridSquare from "./GridSquare"
 import generatePuzzle from "../logic/generatePuzzle"
+import { calculateRow, calculateCol } from "../logic/calculate"
 
 export default class SumPuzzle extends React.Component {
   constructor(props) {
     super(props);
     this.size = 3;
     this.puzzle = generatePuzzle(3);
+
+    this.state = {
+      grid: []
+    };
+  }
+
+  componentDidMount() {
+    this.initializeGrid();
+  }
+
+  initializeGrid = () => {
+    let copy = false;
+    let grid = [];
+    for (let i = 0; i < this.size*2-1; i++) {
+      let inner = [];
+      for (let j = 0; j < this.size*2-1; j++) {
+        if (copy)
+          inner[j] = this.puzzle.arr[i][j];
+        else
+          inner[j] = "";
+        copy = !copy;
+      }
+      grid.push(inner);
+    }
+    this.setState({grid: grid});
+  }
+
+  handleInput = (row, col, value) => {
+    this.setState({
+      grid: this.state.grid.map((r, i) => r.map((c, j) => {
+        return i===row && j===col ? value : c;
+      }))
+    }, () => {
+      if (this.isRowComplete(row) && this.isRowCorrect(row))
+        console.log("row " + row + " is correct!");
+      if (this.isColComplete(col) && this.isColCorrect(col))
+        console.log("col " + col + " is correct!");
+      if (this.isPuzzleComplete() && this.isPuzzleCorrect())
+        console.log("puzzle is correct!");
+    }); 
+  }
+
+  isRowComplete = (row) => {
+    for (let i = 0; i < this.state.grid[row].length; i++) {
+      if (!this.state.grid[row][i])
+        return false;
+    }
+    return true;
+  }
+
+  isRowCorrect = (row) => {
+    return calculateRow(this.state.grid, row) === this.puzzle.rowSums[row/2];
+  }
+
+  isColComplete = (col) => {
+    for (let i = 0; i < this.state.grid.length; i++) {
+      if (!this.state.grid[i][col])
+        return false;
+    }
+    return true;
+  }
+
+  isColCorrect = (col) => {
+    return calculateCol(this.state.grid, col) === this.puzzle.colSums[col/2];
+  }
+
+  isPuzzleComplete = () => {
+    for (let i = 0; i < this.size*2-1; i+=2) {
+      if (!this.isRowComplete(i) || !this.isColComplete(i))
+        return false;
+    }
+    return true;
+  }
+
+  isPuzzleCorrect = () => {
+    for (let i = 0; i < this.size*2-1; i+=2) {
+      if (!this.isRowComplete(i) || !this.isColComplete(i))
+        return false;
+      if (!this.isRowCorrect(i) || !this.isColCorrect(i))
+        return false;
+    }
+    return true;
   }
 
   renderSquare(row, col) {
@@ -31,6 +114,7 @@ export default class SumPuzzle extends React.Component {
       readOnly={row%2===0 && col%2===0 ? false : true}
       operation={row!==end && col!==end && ((row%2===0 && col%2!==0) || (row%2!==0 && col%2===0))}
       puzzleSize={this.size}
+      handleInput={this.handleInput}
     />);
   }
 
