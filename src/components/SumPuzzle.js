@@ -27,7 +27,10 @@ export default class SumPuzzle extends React.Component {
       row={row} 
       col={col} 
       white={row!==end && col!==end && (row%2 === 0 || col%2 === 0)}
-      text={text}
+      value={text}
+      readOnly={row%2===0 && col%2===0 ? false : true}
+      operation={row!==end && col!==end && ((row%2===0 && col%2!==0) || (row%2!==0 && col%2===0))}
+      puzzleSize={this.size}
     />);
   }
 

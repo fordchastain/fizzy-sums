@@ -1,7 +1,11 @@
 .component-grid-square {
   position: relative;
   border: 1px solid black;
-    box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.orange {
+  background: orange;
 }
 
 .component-grid-square.white {
@@ -40,5 +44,29 @@
 
 .text {
   font-size: 25px;
-  flex-wrap: wrap; 
+}
+
+input {
+  font-size: 30px;
+  border: none;
+  outline: none;
+}
+
+.single-digit {
+  width: 22px;
+  height: 22px;
+}
+
+.double-digit {
+  width: 35px;
+  height: 35px;
+}
+
+.operation {
+  width: 100%;
+  padding: 35%;
+}
+
+.operation img {
+  width: 100%;
 }

@@ -1,6 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./GridSquare.css";
+import addIcon from "./img/add.svg";
+import subtractIcon from "./img/subtract.svg";
+import multiplyIcon from "./img/multiply.svg";
+import divideIcon from "./img/divide.svg";
 
 export default class GridSquare extends React.Component {
   static propTypes = {
@@ -8,26 +12,61 @@ export default class GridSquare extends React.Component {
     col: PropTypes.number,
     handleClick: PropTypes.func,
     white: PropTypes.bool,
-    operation: PropTypes.string,
+    operation: PropTypes.bool,
     readOnly: PropTypes.bool,
-    text: PropTypes.string,
+    value: PropTypes.string,
+    puzzleSize: PropTypes.number
   };
 
   handleClick = () => {
-    this.props.handleClick();
+    //this.props.handleClick();
+    if (typeof this.input !== "undefined") 
+      this.input.focus();
+  }
+
+  renderContent() {
+    if (this.props.readOnly) {
+      if (this.props.operation) {
+        return (
+          <div className="operation">
+            <img src={this.props.value==="+" ? addIcon : 
+                      this.props.value==="-" ? subtractIcon :
+                      this.props.value==="*" ? multiplyIcon :
+                      divideIcon} 
+            />
+          </div>
+        );
+      }
+      return (
+        <div className="text">
+          {this.props.value}
+        </div>
+      );
+    } else {
+      return (
+        <input type="text" 
+          maxLength={this.props.puzzleSize===4 ? 2 : 1} 
+          ref={(inp) => this.input = inp}
+          className={this.props.puzzleSize===3 ? "single-digit" : "double-digit"}
+        />
+      );
+    }
   }
 
   render() {
     const className = [
       "component-grid-square",
-      this.props.white ? "white" : "black"
+      this.props.white ? "white" : "black",
+      this.props.readOnly ? "" : "input"
     ];
 
+    let content = this.renderContent();
+
     return (
-      <div className={className.join(" ").trim()}>
+      <div className={className.join(" ").trim()} onClick={this.handleClick}>
         <div className="content">
           <div className="text-container">
-            <div className="text">{this.props.text}</div>
+            {content}
           </div>
         </div>
       </div>
