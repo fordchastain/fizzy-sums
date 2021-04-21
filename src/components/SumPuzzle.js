@@ -1,9 +1,9 @@
 import React from "react"
 import logo from '../logo.svg';
 import './SumPuzzle.css';
-import GridSquare from "./GridSquare"
-import generatePuzzle from "../logic/generatePuzzle"
-import { calculateRow, calculateCol } from "../logic/calculate"
+import GridSquare from "./GridSquare";
+import generatePuzzle from "../logic/generatePuzzle";
+import { calculateRow, calculateCol } from "../logic/calculate";
 
 export default class SumPuzzle extends React.Component {
   constructor(props) {
@@ -53,6 +53,9 @@ export default class SumPuzzle extends React.Component {
   }
 
   isRowComplete = (row) => {
+    if (typeof this.state.grid[row] === "undefined")
+      return false;
+
     for (let i = 0; i < this.state.grid[row].length; i++) {
       if (!this.state.grid[row][i])
         return false;
@@ -100,11 +103,16 @@ export default class SumPuzzle extends React.Component {
     if (typeof this.puzzle.arr !== "undefined") {
       if (col < end && row < end)
         text = this.puzzle.arr[row][col];
-      if (col === end && row%2 === 0) 
+      if (col === end && row%2 === 0)
         text = "=" + this.puzzle.rowSums[Math.floor(row/2)];
       if (row === end && col%2 === 0)
         text = "=" + this.puzzle.colSums[Math.floor(col/2)];
     }
+
+    let colCorrect = (row===end && this.isColComplete(col) && this.isColCorrect(col));
+    let colIncorrect = (row===end && this.isColComplete(col) && !this.isColCorrect(col));
+    let rowCorrect = (col===end && this.isRowComplete(row) && this.isRowCorrect(row));
+    let rowIncorrect = (col===end && this.isRowComplete(row) && !this.isRowCorrect(row));
 
     return(<GridSquare 
       row={row} 
@@ -115,6 +123,8 @@ export default class SumPuzzle extends React.Component {
       operation={row!==end && col!==end && ((row%2===0 && col%2!==0) || (row%2!==0 && col%2===0))}
       puzzleSize={this.size}
       handleInput={this.handleInput}
+      greenText={colCorrect || rowCorrect}
+      redText={colIncorrect || rowIncorrect}
     />);
   }
 

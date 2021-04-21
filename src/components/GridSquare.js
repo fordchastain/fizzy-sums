@@ -71,7 +71,7 @@ export default class GridSquare extends React.Component {
     let content = this.renderContent();
 
     return (
-      <div className={className.join(" ").trim()} onClick={this.props.handleClick}>
+      <div className={className.join(" ").trim()} onClick={this.handleClick}>
         <div className="content">
           <div className="text-container">
             {content}

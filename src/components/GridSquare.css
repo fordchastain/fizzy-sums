@@ -71,10 +71,10 @@ input {
   width: 100%;
 }
 
-.green-text {
-  color: green;
+.component-grid-square.black.green-text {
+  color: LightGreen;
 }
 
-.red-text {
-  color: red;
+.component-grid-square.black.red-text {
+  color: Tomato;
 }
