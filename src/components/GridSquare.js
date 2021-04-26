@@ -17,7 +17,8 @@ export default class GridSquare extends React.Component {
     value: PropTypes.string,
     puzzleSize: PropTypes.number,
     greenText: PropTypes.bool,
-    redText: PropTypes.bool
+    redText: PropTypes.bool,
+    text: PropTypes.string
   };
 
   handleClick = () => {
@@ -37,8 +38,7 @@ export default class GridSquare extends React.Component {
             <img src={this.props.value==="+" ? addIcon : 
                       this.props.value==="-" ? subtractIcon :
                       this.props.value==="*" ? multiplyIcon :
-                      divideIcon} 
-            />
+                      divideIcon} />
           </div>
         );
       }
@@ -54,6 +54,7 @@ export default class GridSquare extends React.Component {
           ref={(inp) => this.input = inp}
           className={this.props.puzzleSize===3 ? "single-digit" : "double-digit"}
           onChange={this.handleInput}
+          value={this.props.text}
         />
       );
     }

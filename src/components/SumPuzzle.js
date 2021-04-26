@@ -123,16 +123,18 @@ export default class SumPuzzle extends React.Component {
     let rowIncorrect = (col===end && this.isRowComplete(row) && !this.isRowCorrect(row));
 
     return(<GridSquare 
+      key={"id"+row+"-"+col}
       row={row} 
       col={col} 
       white={row!==end && col!==end && (row%2 === 0 || col%2 === 0)}
-      value={text}
+      value={""+text}
       readOnly={row%2===0 && col%2===0 ? false : true}
       operation={row!==end && col!==end && ((row%2===0 && col%2!==0) || (row%2!==0 && col%2===0))}
       puzzleSize={this.size}
       handleInput={this.handleInput}
       greenText={colCorrect || rowCorrect}
       redText={colIncorrect || rowIncorrect}
+      text={typeof this.state.grid[row] === "undefined" ? "" : this.state.grid[row][col]}
     />);
   }
 
