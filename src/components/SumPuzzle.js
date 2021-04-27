@@ -3,6 +3,7 @@ import logo from '../logo.svg';
 import './SumPuzzle.css';
 import Button from "./Button";
 import GridSquare from "./GridSquare";
+import Popup from "./Popup";
 import generatePuzzle from "../logic/generatePuzzle";
 import { calculateRow, calculateCol } from "../logic/calculate";
 
@@ -13,7 +14,8 @@ export default class SumPuzzle extends React.Component {
     this.puzzle = generatePuzzle(3);
 
     this.state = {
-      grid: []
+      grid: [],
+      popupVisible: false
     };
   }
 
@@ -48,9 +50,16 @@ export default class SumPuzzle extends React.Component {
         console.log("row " + row + " is correct!");
       if (this.isColComplete(col) && this.isColCorrect(col))
         console.log("col " + col + " is correct!");
-      if (this.isPuzzleComplete() && this.isPuzzleCorrect())
+      if (this.isPuzzleComplete() && this.isPuzzleCorrect()) {
         console.log("puzzle is correct!");
+        this.setState({popupVisible: true});
+      }
+
     }); 
+  }
+
+  togglePopup = () => {
+    this.setState({popupVisible: !this.state.popupVisible});
   }
 
   newGame = () => {
@@ -146,19 +155,22 @@ export default class SumPuzzle extends React.Component {
     }
 
     return (
-      <div className="app-content">
-        <div className="divider-line" />
-        <div className="button-bar">
-          <div className="button-container">
-            <Button text={"New Game"} handleClick={this.newGame} green={true}/>
+      <div>
+        {this.state.popupVisible ? <Popup text="Congrats! You solved the puzzle!" toggle={this.togglePopup}/> : null} 
+        <div className="app-content">
+          <div className="divider-line" />
+          <div className="button-bar">
+            <div className="button-container">
+              <Button text={"New Game"} handleClick={this.newGame} green={true}/>
+            </div>
+            <div className="button-container">
+              <a href="about.html"><Button text={"How to Play"} handleClick={this.newGame} green={false} /></a>
+            </div>
           </div>
-          <div className="button-container">
-            <a href="about.html"><Button text={"How to Play"} handleClick={this.newGame} green={false} /></a>
-          </div>
-        </div>
-        <div className="component-sum-puzzle">
-          <div className="grid-container">
-            {grid}
+          <div className="component-sum-puzzle">
+            <div className="grid-container">
+              {grid}
+            </div>
           </div>
         </div>
       </div>

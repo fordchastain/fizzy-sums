@@ -78,3 +78,35 @@ input {
 .component-grid-square.black.red-text {
   color: Tomato;
 }
+
+/* small screen media queries */
+
+@media only screen and (max-width: 500px) {
+  .text {
+    font-size: 20px;
+  }
+
+  input {
+    font-size: 24px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .text {
+    font-size: 15px;
+  }
+
+  input {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .text {
+    font-size: 10px;
+  }
+
+  input {
+    font-size: 13px;
+  }
+}
