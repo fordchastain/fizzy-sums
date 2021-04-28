@@ -1,5 +1,4 @@
 import React from "react"
-import logo from '../logo.svg';
 import './SumPuzzle.css';
 import Button from "./Button";
 import GridSquare from "./GridSquare";
@@ -46,15 +45,8 @@ export default class SumPuzzle extends React.Component {
         return i===row && j===col ? value : c;
       }))
     }, () => {
-      if (this.isRowComplete(row) && this.isRowCorrect(row))
-        console.log("row " + row + " is correct!");
-      if (this.isColComplete(col) && this.isColCorrect(col))
-        console.log("col " + col + " is correct!");
-      if (this.isPuzzleComplete() && this.isPuzzleCorrect()) {
-        console.log("puzzle is correct!");
+      if (this.isPuzzleComplete() && this.isPuzzleCorrect())
         this.setState({popupVisible: true});
-      }
-
     }); 
   }
 
@@ -104,6 +96,21 @@ export default class SumPuzzle extends React.Component {
     return true;
   }
 
+  isPuzzleValid = () => {
+    const gridSet = new Set();
+    for (let i = 0; i < this.size*2-1; i+= 2) {
+      for (let j = 0; j < this.size*2-1; j+=2) {
+        if (this.state.grid[i][j] > 0 && this.state.grid[i][j] <= this.size*this.size)
+          gridSet.add(this.state.grid[i][j]);
+      }
+    }
+
+    if (gridSet.size != this.size*this.size)
+      return false;
+    else
+      return true;
+  }
+
   isPuzzleCorrect = () => {
     for (let i = 0; i < this.size*2-1; i+=2) {
       if (!this.isRowComplete(i) || !this.isColComplete(i))
@@ -111,7 +118,7 @@ export default class SumPuzzle extends React.Component {
       if (!this.isRowCorrect(i) || !this.isColCorrect(i))
         return false;
     }
-    return true;
+    return this.isPuzzleValid();
   }
 
   renderSquare(row, col) {
@@ -176,5 +183,4 @@ export default class SumPuzzle extends React.Component {
       </div>
     );
   }
-  
 }

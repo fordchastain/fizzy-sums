@@ -1,9 +1,7 @@
 import * as calc from './calculate.js'
 
 /**
- *
  * Given the size of a sum, generate and return a new puzzle.
- *
  */
 export default function generatePuzzle(size) {
   let numbers = [];
@@ -33,12 +31,6 @@ export default function generatePuzzle(size) {
   
   let rowSums = calc.calculateRowSums(evalArr, size);
   let colSums = calc.calculateColSums(evalArr, size);
-  
-  console.log({
-    arr: evalArr,
-    rowSums: rowSums,
-    colSums: colSums
-  });
 
   return ({
     arr: evalArr,
