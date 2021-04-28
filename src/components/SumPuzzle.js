@@ -171,7 +171,7 @@ export default class SumPuzzle extends React.Component {
               <Button text={"New Game"} handleClick={this.newGame} green={true}/>
             </div>
             <div className="button-container">
-              <a href="about.html"><Button text={"How to Play"} green={false} /></a>
+              <a href="about"><Button text={"How to Play"} green={false} /></a>
             </div>
           </div>
           <div className="component-sum-puzzle">
