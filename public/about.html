@@ -6,9 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="apple-touch-icon" href="logo192.png" />
     <link rel="manifest" href="manifest.json" />
-    <title>Fizzy Sums</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+    <title>Fizzy Sums - How to Play</title>
+    <style>
+      .main-content {
+        padding: 20px;
+        width: 80%;
+        max-width: 850px;
+        margin: 0 auto;
+        font-family: 'Roboto';
+      }
+
+      .divider {
+        height: 1px;
+        background: black;
+      }
+    </style>
   </head>
   <body>
-    <h1>How to Play</h1>
+    <div class="main-content">
+      <h1>How to Play</h1>
+      <div class="divider"></div>
+      <h3>What is Fizzy Sums?</h3>
+      <p>Fizzy Sums is a number game that is similar to kakuro or sudoku that focuses on basic arithmetic. 
+        The goal of the game is to satisfy all the equations in the rows and columns such that each number 1-9 is used 
+        exactly once. There are many forms of this game available on the internet under different names, but Fizzy Sums 
+        follows these guidelines:
+        <ul>
+          <li>Order of operations (PEMDAS) applies.</li>
+          <li>Basic fractions may occur within the equation (1/4, 1/2, 2/3, etc.).</li>
+          <li>Negative numbers may occur within the equation.</li>
+        </ul>
+        For example:
+        <ul>
+          <li>9+8*5=49 because you evaluate multiplication (8*5) before addition (9+8). So you get 9+8*5=9+40=49.</li>
+          <li>2/8*4=1 is valid because even though you get the fraction 1/4 when dividing 2/8, after multiplying by 4 
+          you end up with a whole number. Only whole numbers occur after the = sign.</li>
+          <li>3-4*1=-1 is valid even though a negative number occurs. Some other forms of this game found on the internet 
+          may not use negative numbers but Fizzy Sums does.</li>
+        </ul>
+      </p>
+      <h3>Why Fizzy Sums?</h3>
+      <p>I made Fizzy Sums as a way to practice creating web applications using React JS. It is completely open-source and 
+        you can view the source code in its entirety <a href="https://github.com/fordchastain/fizzy-sums">here</a>. If 
+        you are interested, feel free to fork the project and submit pull requests. If I feel the change you made improved 
+        the project, then I will happily merge it into the master branch!</p>
+    </div>
   </body>
 </html>
