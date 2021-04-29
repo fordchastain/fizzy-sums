@@ -26,6 +26,8 @@ up with a whole number - only whole numbers occur in the answer
 - 3-4\*1=-1 is valid even though a negative number occurs - variations of this game found on the internet may 
 not use negative numbers but Fizzy Sums does
 
+![Demo](public/demo.gif)
+
 ### How to install
 
 Make sure you have [git](https://git-scm.com/downloads) and [npm](https://www.npmjs.com/get-npm). Then run the following 
@@ -43,7 +45,7 @@ Once it's done installing you can run the project locally with:
 $ npm start
 ```
 
-### Why Fizzy Sums
+### Why Fizzy Sums?
 
 I made Fizzy Sums as a way to practice creating web applications with React JS. If you are interested, feel free to fork 
 the project, make any changes, and submit a pull request. If I feel the change you made improved the project, then I will 
