@@ -5,7 +5,7 @@
 ![](https://img.shields.io/github/languages/code-size/fordchastain/fizzy-sums)
 ![](https://img.shields.io/github/license/fordchastain/fizzy-sums)
 
-Check out the latest build at: [fizzysums.com](https://fizzysums.com)
+Check out the latest build at: [fordchastain.github.io/fizzy-sums](https://fordchastain.github.io/fizzy-sums/)
 
 ### What is Fizzy Sums?
 
